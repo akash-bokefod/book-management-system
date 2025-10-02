@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <style>
         h1{
             text-align: center;
@@ -28,14 +30,15 @@
         a:hover{
             text-decoration:underline;
         }
-        tr:hover{
-            background-color: rgba(0, 0, 0, 0.3);
+        td,th{
+            border: 2px solid black;
         }
     </style>
 </head>
 <body>
-    <h1>Book List</h1>
-    <table>
+    <center>
+        <h1>Book List</h1>
+        <table>
             <tr>
                 <th>id</th>
                 <th>title</th>
@@ -43,18 +46,19 @@
                 <th>year</th>
                 <th>Action</th>
             </tr>
-        <tr>
-          <%for(let book of books){%>
-            <td><%=book.id%></td>
-            <td><%=book.title%></td>
-            <td><%=book.author%></td>
-            <td><%=book.year%></td>
-            <td><a href="http://localhost:3000/books/edit/<%=book.id%>">EDIT</a> | <form action="/books/delate/<%=book.id%>?_method=DELETE" method="POST" style="display:inline;">
-      <button type="submit">Delete</button>
-    </form></td>
-        </tr>
-        <%}%>
-    </table>
-    <a href="http://localhost:3000/books/new"%><button>add new book</button></a>
+            <tr>
+            <%for(let book of books){%>
+                <td><%=book.id%></td>
+                <td><%=book.title%></td>
+                <td><%=book.author%></td>
+                <td><%=book.year%></td>
+                <td><a href="http://localhost:3000/books/edit/<%=book.id%>"><button type="button" class="btn btn-outline-primary">Edit Book</button></a> | <form action="/books/delate/<%=book.id%>?_method=DELETE" method="POST" style="display:inline;">
+            <button class="btn btn-outline-dark">Delete</button></form>
+            </form></td>
+                </tr>
+                <%}%>
+        </table>
+        <a class="btn btn-primary" href="/books/new" role="button">Add Book</a>
+    </center>
 </body>
 </html>
