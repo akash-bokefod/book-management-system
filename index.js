@@ -4,6 +4,8 @@ const port =3000;
 const methodOverride = require("method-override");
 app.set("view engine","ejs");
 const mysql=require('mysql2');
+require('dotenv').config();
+
 
 app.use(methodOverride("_method")); 
 app.use(express.static('public'));
@@ -11,10 +13,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 const connection=mysql.createConnection({
-    host:"localhost",
-    user:'root',
-    password:'bokefod2025',
-    database:'books'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
 
 app.listen(port,()=>{
